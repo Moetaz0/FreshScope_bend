@@ -9,6 +9,8 @@ var auteurSchema = mongoose.Schema({
     imageUrl: String,
     isPopular: Boolean,
     inSlide:    Boolean,
+    isLie: Boolean,
+    date: { type: Date, default: Date.now },
 });
 const Article = mongoose.model('Article', auteurSchema);
 export default Article

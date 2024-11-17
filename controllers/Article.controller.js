@@ -22,7 +22,7 @@ export const getAuteurByID = async (req, res) => {
 };
 
 export const createAuteur = async (req, res) => {
-  const {  title, categorie, nomauteur, content, imageUrl, isPopular , inSlide } = req.body;
+  const {  title, categorie, nomauteur, content, imageUrl, isPopular , inSlide , isLie ,date } = req.body;
 
   const newAuteur = new Article({
     title: title,
@@ -32,6 +32,9 @@ export const createAuteur = async (req, res) => {
     imageUrl: imageUrl,
     isPopular: isPopular,
     inSlide: inSlide,
+    isLie: isLie,
+    date: date,
+    
   });
 
   try {
@@ -45,12 +48,12 @@ export const createAuteur = async (req, res) => {
 
 export const updateAuteur = async (req, res) => {
   const { id } = req.params;
-  const { title, categorie, nomauteur, content, imageUrl , isPopular , inSlide } = req.body;
+  const { title, categorie, nomauteur, content, imageUrl , isPopular , inSlide , isLie } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send(`pas de auteur avec un id: ${id}`);
 
-  const aut1 = {   _id: id ,title: title, categorie: categorie,nomauteur: nomauteur , content: content, imageUrl: imageUrl , isPopular: isPopular , inSlide: inSlide};
+  const aut1 = {   _id: id ,title: title, categorie: categorie,nomauteur: nomauteur , content: content, imageUrl: imageUrl , isPopular: isPopular , inSlide: inSlide , isLie: isLie };
 
   await Article.findByIdAndUpdate(id, aut1);
 
